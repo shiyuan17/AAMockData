@@ -8,9 +8,6 @@
 
 #import "AAMockData.h"
 #import "NSObject+AAPropertyListing.h"
-#import "AAMockStringSource.h"
-#import "AAMockInterget.h"
-#import "AAMockDateSource.h"
 @implementation AAMockData
 + (void)mockModel:(NSObject *)model{
 

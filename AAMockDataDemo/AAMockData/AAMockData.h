@@ -54,6 +54,9 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AAMockStringSource.h"
+#import "AAMockInterget.h"
+#import "AAMockDateSource.h"//额外三个类，一起引用，测试数据方便删除。
 
 @interface AAMockData : NSObject
 + (void)mockModel:(NSObject *)model;
