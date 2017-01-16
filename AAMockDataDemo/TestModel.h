@@ -33,7 +33,8 @@
 @property (nonatomic, copy) NSString *create_time;/**<登记时间（时间戳/秒） */
 
 @property (nonatomic, copy) NSString *continue_state;/**<是否为续住单（1 续住，2 不续住） */
-
+@property (nonatomic, strong) NSArray *TestModelData;
+@property (nonatomic, assign) BOOL hasMore;
 @property (nonatomic,strong) TestModelData *data;
 @end
 
