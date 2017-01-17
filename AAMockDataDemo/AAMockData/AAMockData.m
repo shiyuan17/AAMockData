@@ -8,9 +8,6 @@
 
 #import "AAMockData.h"
 #import "NSObject+AAPropertyListing.h"
-#import "AAMockStringSource.h"
-#import "AAMockInterget.h"
-#import "AAMockDateSource.h"
 @implementation AAMockData
 + (void)mockModel:(NSObject *)model{
 
@@ -64,6 +61,23 @@
             
         }else if([dic[key] isEqualToString:@"NSDate"]){
             [model setValue:[AAMockDateSource randomDate:RandomDateTypeDefault] forKey:key];
+        }
+//        else if([dic[key] isEqualToString:@"NS_ENUM"]){//枚举类型了，不用单独判断bool 模型单独修改吧
+//            [model setValue:@([AAMockInterget returnYesOrNO]) forKey:key];
+//        }
+        else if([dic[key] isEqualToString:@"NSArray"]){
+            NSMutableArray *middelArr = [[NSMutableArray alloc] initWithCapacity:10];
+            for (int i = 0; i < 10; i ++) {
+                //初始化对象
+                Class attrClass = NSClassFromString(key);
+                if (!attrClass) {
+                    attrClass = NSClassFromString([key stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[key substringToIndex:1] uppercaseString]]);
+                }
+                id attrClassInit = [[attrClass alloc] init];
+                [AAMockData mockModel:attrClassInit];
+                [middelArr addObject:attrClassInit];
+                [model setValue:middelArr forKey:key];
+            }
         }else{
             //其它数据类型
         }

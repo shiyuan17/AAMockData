@@ -11,4 +11,7 @@
 @interface AAMockInterget : NSObject
 + (NSInteger)randomAge;/**<随机年龄生成*/
 + (NSInteger)randomNumber;/**随机编号*/
++ (BOOL)returnYes;/**1*/
++ (BOOL)returnNo;/**0*/
++ (BOOL)returnYesOrNO;/**0  1*/
 @end

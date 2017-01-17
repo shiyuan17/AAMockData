@@ -20,4 +20,16 @@
     return [AAMockRandom randomNumber:100 to:99999];
 }
 
++ (BOOL)returnYes{
+    return YES;
+}
+
++ (BOOL)returnNo{
+    return NO;
+}
+
++ (BOOL)returnYesOrNO{
+    return [AAMockRandom randomNumber:0 to:1] == 1?YES:NO;
+}
+
 @end

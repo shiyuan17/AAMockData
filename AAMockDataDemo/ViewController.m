@@ -11,6 +11,7 @@
 #import "AAMockData.h"
 #import "TestModel.h"
 #import "AAMockStringSource.h"
+#import "AAMockInterget.h"
 @interface ViewController ()
 
 @end
@@ -19,7 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self mockModelData];
+//    [self mockModelData];
+    [self testArr];
 }
 
 - (void)mockModelData{
@@ -28,6 +30,18 @@
     
 //    model.name = [AAMockStringSource randomName];
     NSLog(@"测试数据：%@",model.mj_keyValues);
+}
+
+- (void)testArr {
+    int i  = 0;
+    while (i < 50) {
+        i++;
+        TestModel *model = [[TestModel alloc] init];
+        [AAMockData mockModel:model];
+        model.name  = [AAMockStringSource randomCotentWithLength:0];
+        model.hasMore = [AAMockInterget returnYesOrNO];
+        NSLog(@"测试数据：%@",model.TestModelData);
+    }
 }
 
 

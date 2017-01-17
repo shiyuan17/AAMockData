@@ -134,10 +134,7 @@
 #pragma mark 根据指定长度生成内容
 + (NSString *)randomCotentWithLength:(NSInteger)len{
     NSString *content = [AAMockStringSource stringContent];
-    NSInteger random = [AAMockRandom randomNumber:0 to:content.length-1];
-    if((random+len)>=content.length){
-        [AAMockStringSource randomCotentWithLength:len];
-    }
+    NSInteger random = [AAMockRandom randomNumber:0 to:content.length-len];
     NSString *text = [content substringWithRange:NSMakeRange(random, len)];
     return text;
 }
@@ -186,10 +183,10 @@
     if(citys.count>2){
         cindex = arc4random() % (citys.count-1);
     }
-    NSString *city = [citys[cindex] valueForKey:@"name"];
+    NSString *city = [citys[cindex>citys.count?cindex:0] valueForKey:@"name"];
     
-    NSArray *areas = [citys[cindex] valueForKey:@"area_list"];
-    NSInteger aindex = arc4random() % (citys.count-1);
+    NSArray *areas = [citys[cindex>citys.count?cindex:0] valueForKey:@"area_list"];
+    NSInteger aindex = arc4random() % (citys.count>1?(citys.count-1):citys.count);
     NSString *area;
     if(areas.count>aindex){
         area = [areas[aindex] valueForKey:@"name"];
@@ -204,27 +201,27 @@
         {
             resultAddress = addressStr;
         }
-        break;
+            break;
         case AddresTypeProvince:
         {
             resultAddress = province;
         }
-        break;
+            break;
         case AddresTypeCity:
         {
             resultAddress = city;
         }
-        break;
+            break;
         case AddresTypeArea:
         {
             resultAddress = area;
         }
-        break;
+            break;
         default:
         {
             resultAddress = addressStr;
         }
-        break;
+            break;
     }
     return resultAddress;
 }
